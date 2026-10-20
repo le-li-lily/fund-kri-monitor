@@ -73,16 +73,37 @@ def test_metric_golden_status(statuses, metric):
     assert statuses[metric] == GOLDEN_STATUSES[metric]
 
 
-def test_breach_log_contains_watch_items_as_well_as_breaches(reference_result):
-    # Named "Breach Log" but scoped to WATCH + BREACH. Pinned here so the
-    # behaviour cannot drift silently; the naming is a separate documented gap.
-    flagged = set(
-        reference_result.kri_summary.loc[
-            reference_result.kri_summary["status"].isin(["WATCH", "BREACH"]), "metric"
-        ]
-    )
-    assert set(reference_result.breach_log["metric"]) == flagged
-    assert set(reference_result.breach_log["status"]) == {"WATCH", "BREACH"}
+def test_breach_log_contains_only_hard_limit_breaches(reference_result):
+    """The breach register is a regulatory record; a watch item is not a breach."""
+    breaches = set(reference_result.kri_summary.loc[reference_result.kri_summary["status"] == "BREACH", "metric"])
+    assert set(reference_result.breach_log["metric"]) == breaches
+    assert set(reference_result.breach_log["status"]) == {"BREACH"}
+
+
+def test_watch_list_contains_only_early_warnings(reference_result):
+    watches = set(reference_result.kri_summary.loc[reference_result.kri_summary["status"] == "WATCH", "metric"])
+    assert set(reference_result.watch_list["metric"]) == watches
+    assert set(reference_result.watch_list["status"]) == {"WATCH"}
+
+
+def test_breach_log_and_watch_list_are_disjoint(reference_result):
+    assert not set(reference_result.breach_log["metric"]) & set(reference_result.watch_list["metric"])
+
+
+def test_breach_log_plus_watch_list_equals_the_action_plan(reference_result):
+    combined = set(reference_result.breach_log["metric"]) | set(reference_result.watch_list["metric"])
+    assert combined == set(reference_result.action_plan["metric"])
+
+
+def test_both_logs_keep_their_columns_when_empty(reference_result):
+    """An empty register must still have its schema, or the Excel sheet loses its headers."""
+    from fund_kri_monitor.kri import build_breach_log, build_watch_list
+
+    clean = reference_result.kri_summary.assign(status="OK")
+    for builder in (build_breach_log, build_watch_list):
+        frame = builder(clean, fund_id="KRI_FUND", as_of_date=reference_result.as_of_date)
+        assert frame.empty
+        assert list(frame.columns) == list(reference_result.breach_log.columns)
 
 
 def test_action_plan_covers_every_watch_and_breach(reference_result):

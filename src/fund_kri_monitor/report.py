@@ -41,6 +41,10 @@ def write_excel_report(result: MonitorResult, output_path: str | Path) -> Path:
     _write_dataframe(breach_ws, result.breach_log, start_row=1, start_col=1, table_name="BreachLog")
     _style_status_columns(breach_ws)
 
+    watch_ws = wb.create_sheet("Watch List")
+    _write_dataframe(watch_ws, result.watch_list, start_row=1, start_col=1, table_name="WatchList")
+    _style_status_columns(watch_ws)
+
     action_ws = wb.create_sheet("Action Plan")
     _write_dataframe(action_ws, result.action_plan, start_row=1, start_col=1, table_name="ActionPlan")
     _style_status_columns(action_ws)

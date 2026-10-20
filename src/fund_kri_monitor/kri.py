@@ -18,6 +18,7 @@ class MonitorResult:
     exposure_summary: pd.DataFrame
     kri_summary: pd.DataFrame
     breach_log: pd.DataFrame
+    watch_list: pd.DataFrame
     action_plan: pd.DataFrame
     history: pd.DataFrame
     thresholds: pd.DataFrame
@@ -206,7 +207,29 @@ def calculate_kri_summary(
 
 
 def build_breach_log(kri_summary: pd.DataFrame, fund_id: str, as_of_date: pd.Timestamp) -> pd.DataFrame:
-    events = kri_summary.loc[kri_summary["status"].isin(["WATCH", "BREACH"])].copy()
+    """Hard-limit breaches only.
+
+    Kept separate from the watch list because the two carry different
+    obligations: a breach is a limit failure that has to be escalated and
+    reported, while a watch item is an early warning that is still inside
+    appetite. Mixing them inflates the apparent breach count in a committee
+    pack and makes the breach register unusable as a regulatory record.
+    """
+    return _build_exception_log(kri_summary, fund_id, as_of_date, statuses=("BREACH",))
+
+
+def build_watch_list(kri_summary: pd.DataFrame, fund_id: str, as_of_date: pd.Timestamp) -> pd.DataFrame:
+    """Early-warning threshold triggered, hard limit still intact."""
+    return _build_exception_log(kri_summary, fund_id, as_of_date, statuses=("WATCH",))
+
+
+def _build_exception_log(
+    kri_summary: pd.DataFrame,
+    fund_id: str,
+    as_of_date: pd.Timestamp,
+    statuses: tuple[str, ...],
+) -> pd.DataFrame:
+    events = kri_summary.loc[kri_summary["status"].isin(statuses)].copy()
     if events.empty:
         return pd.DataFrame(
             columns=[
@@ -359,6 +382,7 @@ def run_monitor(
     as_of_date = pd.Timestamp(positions["as_of_date"].max())
     data_quality = build_data_quality(positions, returns, nav=float(positions["market_value"].sum()), as_of_date=as_of_date)
     breach_log = build_breach_log(kri_summary, fund_id=fund_id, as_of_date=as_of_date)
+    watch_list = build_watch_list(kri_summary, fund_id=fund_id, as_of_date=as_of_date)
     action_plan = build_action_plan(kri_summary, fund_id=fund_id, as_of_date=as_of_date)
     snapshot = build_history_snapshot(kri_summary, fund_id=fund_id, as_of_date=as_of_date)
     history = update_history_file(history_path, snapshot) if history_path else snapshot
@@ -372,6 +396,7 @@ def run_monitor(
         exposure_summary=exposure_summary,
         kri_summary=kri_summary,
         breach_log=breach_log,
+        watch_list=watch_list,
         action_plan=action_plan,
         history=history,
         thresholds=thresholds,

@@ -29,7 +29,8 @@ Automated Python pipeline for fund key risk indicator monitoring. The project si
 - Produces an Excel workbook with:
   - color-coded KRI status table
   - data quality checks
-  - timestamped event log
+  - breach register, scoped to hard-limit failures only
+  - watch list of early warnings still inside appetite
   - owner/action remediation tracker
   - asset-class exposure summary
   - holdings detail
@@ -121,7 +122,7 @@ This is a practical monitoring workflow prototype. The VaR calculation uses hist
 2. Update `data/asset_returns.csv` from market data.
 3. Run `python run_monitor.py`.
 4. Review console alerts for immediate `WATCH` and `BREACH` items.
-5. Open `outputs/fund_kri_report.xlsx` and check `KRI Summary`, `Data Quality`, `Action Plan`, and `Breach Log`.
+5. Open `outputs/fund_kri_report.xlsx` and check `KRI Summary`, `Data Quality`, `Breach Log`, `Watch List`, and `Action Plan`.
 6. Review `outputs/latest_alert.md` for a copy/paste-ready alert summary.
 7. Track repeated or deteriorating issues through `outputs/kri_history.csv`, `outputs/risk_monitor.db`, or the workbook `Trend History` sheet.
 
