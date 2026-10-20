@@ -1,0 +1,106 @@
+{
+  "var_95_1d": {
+    "warning": 0.02,
+    "limit": 0.025,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Market risk",
+    "description": "One-day 95% historical VaR must remain within 2.5% of NAV."
+  },
+  "concentration": {
+    "warning": 0.15,
+    "limit": 0.2,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Concentration",
+    "description": "Largest single issuer/asset exposure must remain within 20% of NAV."
+  },
+  "top5_concentration": {
+    "warning": 0.65,
+    "limit": 0.75,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Concentration",
+    "description": "Top five holdings should not dominate the portfolio."
+  },
+  "largest_asset_class": {
+    "warning": 0.45,
+    "limit": 0.55,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Concentration",
+    "description": "Largest asset class exposure must remain diversified."
+  },
+  "liquidity_ratio": {
+    "warning": 0.4,
+    "limit": 0.3,
+    "comparison": ">=",
+    "format": "percent",
+    "category": "Liquidity",
+    "description": "At least 30% of NAV should be liquid within five business days."
+  },
+  "stressed_liquidity_ratio": {
+    "warning": 0.25,
+    "limit": 0.15,
+    "comparison": ">=",
+    "format": "percent",
+    "category": "Liquidity",
+    "description": "Liquidity available in five days after market-impact haircut."
+  },
+  "illiquid_ratio": {
+    "warning": 0.2,
+    "limit": 0.3,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Liquidity",
+    "description": "Assets requiring more than ten days to liquidate should remain controlled."
+  },
+  "max_drawdown": {
+    "warning": 0.06,
+    "limit": 0.08,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Market risk",
+    "description": "Rolling historical max drawdown should not exceed 8%."
+  },
+  "volatility_20d": {
+    "warning": 0.18,
+    "limit": 0.25,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Market risk",
+    "description": "Annualised 20-day realised volatility should stay within risk appetite."
+  },
+  "stress_equity_down_10": {
+    "warning": 0.04,
+    "limit": 0.06,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Stress test",
+    "description": "Estimated loss under a 10% listed-equity shock."
+  },
+  "credit_exposure": {
+    "warning": 0.2,
+    "limit": 0.3,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Credit",
+    "description": "Credit asset exposure should remain inside mandate."
+  },
+  "leverage": {
+    "warning": 1.25,
+    "limit": 1.5,
+    "comparison": "<=",
+    "format": "multiple",
+    "category": "Leverage",
+    "description": "Gross exposure should not exceed 1.5x NAV."
+  },
+  "derivative_exposure": {
+    "warning": 0.2,
+    "limit": 0.3,
+    "comparison": "<=",
+    "format": "percent",
+    "category": "Derivatives",
+    "description": "Derivative gross exposure should remain inside risk budget."
+  }
+}

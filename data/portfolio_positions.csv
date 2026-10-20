@@ -1,0 +1,9 @@
+fund_id,as_of_date,asset_id,asset_name,asset_class,market_value,exposure_multiplier,adv_30d,liquidity_days
+KRI_FUND,2024-12-31,AAPL,Apple Inc,Equity,1750000,1.0,85000000,1
+KRI_FUND,2024-12-31,MSFT,Microsoft Corp,Equity,1450000,1.0,76000000,1
+KRI_FUND,2024-12-31,NVDA,NVIDIA Corp,Equity,2200000,1.0,98000000,1
+KRI_FUND,2024-12-31,UST10Y,US Treasury 10Y,Bond,1600000,1.0,120000000,2
+KRI_FUND,2024-12-31,HY_CREDIT,High Yield Credit ETF,Credit,1300000,1.0,9000000,4
+KRI_FUND,2024-12-31,PE_CO_INV,Private Equity Co-Invest,Private Equity,900000,1.0,0,90
+KRI_FUND,2024-12-31,IRS_SWAP,Interest Rate Swap,Derivative,350000,3.0,0,10
+KRI_FUND,2024-12-31,CASH_USD,USD Cash,Cash,450000,1.0,450000,0

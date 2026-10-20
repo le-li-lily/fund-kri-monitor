@@ -1,0 +1,14 @@
+fund_id,as_of_date,run_timestamp,metric,category,value,warning,limit,status
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,var_95_1d,Market risk,0.018935499999999997,0.02,0.025,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,concentration,Concentration,0.22,0.15,0.2,BREACH
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,top5_concentration,Concentration,0.8300000000000001,0.65,0.75,BREACH
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,largest_asset_class,Concentration,0.54,0.45,0.55,WATCH
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,liquidity_ratio,Liquidity,0.875,0.4,0.3,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,stressed_liquidity_ratio,Liquidity,0.65625,0.25,0.15,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,illiquid_ratio,Liquidity,0.09,0.2,0.3,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,max_drawdown,Market risk,0.06397575586823556,0.06,0.08,WATCH
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,volatility_20d,Market risk,0.1461404157137922,0.18,0.25,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,stress_equity_down_10,Stress test,0.055749999999999994,0.04,0.06,WATCH
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,credit_exposure,Credit,0.13,0.2,0.3,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,leverage,Leverage,1.07,1.25,1.5,OK
+KRI_FUND,2024-12-31,2026-10-20 21:58:01 UTC,derivative_exposure,Derivatives,0.105,0.2,0.3,OK

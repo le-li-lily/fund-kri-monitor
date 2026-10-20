@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+.pycache_tmp/
+.pytest_cache/
+.DS_Store
+
+# Generated run artefacts. latest_alert.md and kri_history.csv are committed
+# as worked examples; everything else is rebuilt by `python run_monitor.py`.
+outputs/*.xlsx
+outputs/*.db
+outputs/*.db.bak-*
+outputs/*.log
+
+# Internal review deliverable; tracks defects that this repo has since fixed.
+# Excluded until regenerated with remediation status.
+Fund_KRI_Monitor_Technical_Review.docx
+build_review_doc.js
