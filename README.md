@@ -112,6 +112,18 @@ python run_monitor.py \
   --alert-output outputs/latest_alert.md
 ```
 
+## Technical Review
+
+`Fund_KRI_Monitor_Technical_Review.docx` is an independent code and methodology review of this build. It documents the formula behind each of the thirteen indicators, seventeen defects reproduced by execution against the project's own data, the gaps against a real-world KRI framework, and a prioritised remediation roadmap. Every defect carries a remediation status.
+
+The five control defects marked `Fixed` are the ones this repository has since closed: non-idempotent persistence, run-id collision, automatic closure of events under human investigation, an unenforced lifecycle state machine, and a breach register that counted watch items as breaches. The methodology defects remain `Open` and are the binding constraint on the numbers — the pipeline is now trustworthy as a process, but its risk figures are not yet validated. See the scope note in section 6.1.
+
+The document is regenerated with:
+
+```bash
+node build_review_doc.js
+```
+
 ## Notes
 
 This is a practical monitoring workflow prototype. The VaR calculation uses historical simulation based on supplied asset return history and current portfolio weights. The stress test is deliberately simple so the workflow is easy to inspect; production use would replace it with official risk-model shocks, verified data feeds, fund accounting extracts, order-management feeds, approval statuses, and persistent exception lifecycle management.

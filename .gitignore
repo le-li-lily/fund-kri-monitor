@@ -11,8 +11,3 @@ outputs/*.xlsx
 outputs/*.db
 outputs/*.db.bak-*
 outputs/*.log
-
-# Internal review deliverable; tracks defects that this repo has since fixed.
-# Excluded until regenerated with remediation status.
-Fund_KRI_Monitor_Technical_Review.docx
-build_review_doc.js
